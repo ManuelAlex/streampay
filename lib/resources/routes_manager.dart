@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:stream_pay/auth/view/register_view.dart';
+import 'package:stream_pay/componets/background.dart';
 import 'package:stream_pay/on_boarding/view/on_boarding_view.dart';
 import 'package:stream_pay/splash_screen/view/splash_screen_view.dart';
 
@@ -16,7 +18,7 @@ class RouteGenerator {
 
       case Routes.onBoardingView:
         return MaterialPageRoute<dynamic>(
-          builder: (_) => const OnBoardingView(),
+          builder: (_) => const RegisterView(),
         );
       default:
         return undefinedRoute();

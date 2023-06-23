@@ -36,6 +36,7 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   hooks_riverpod: ^2.3.6
+  flutter_hooks: ^0.18.6
 
 dev_dependencies:
   flutter_test:
@@ -64,6 +65,7 @@ flutter:
     - assets/images/onboarding1.jpg
     - assets/images/onboarding2.jpg
     - assets/images/onboarding3.jpg
+    - assets/vectors/Vector@2x.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

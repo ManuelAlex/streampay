@@ -6,4 +6,5 @@ class AssetsManager {
   static const String slider1ImageUrl = 'assets/images/onboarding1.jpg';
   static const String slider1ImageUr2 = 'assets/images/onboarding2.jpg';
   static const String slider1ImageUr3 = 'assets/images/onboarding3.jpg';
+  static const String connetWalletVector = 'assets/vectors/Vector@2x.png';
 }

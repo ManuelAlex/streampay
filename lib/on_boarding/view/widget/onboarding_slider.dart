@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:stream_pay/componets/login_row.dart';
 import 'package:stream_pay/on_boarding/models/slider_model.dart';
 import 'package:stream_pay/on_boarding/view/const/onboarding_string.dart';
-import 'package:stream_pay/resources/color_manager.dart';
 import 'package:stream_pay/resources/value_manager.dart';
 
 class OnBoardingSlider extends StatelessWidget {
@@ -56,26 +56,7 @@ class OnBoardingSlider extends StatelessWidget {
                       const SizedBox(
                         height: AppSize.s16,
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(OnBoardingStringConst.alreadyHaveAccount,
-                              style: Theme.of(context).textTheme.bodySmall),
-                          const SizedBox(
-                            width: AppSize.s16,
-                          ),
-                          TextButton(
-                            onPressed: () {},
-                            child: Text(OnBoardingStringConst.login,
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodySmall!
-                                    .copyWith(
-                                      color: ColorManager.blueButton,
-                                    )),
-                          )
-                        ],
-                      ),
+                      const LoginRow(),
                     ],
                   ),
                 ),
