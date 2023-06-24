@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:stream_pay/componets/text_widget.dart';
 import 'package:stream_pay/resources/color_manager.dart';
 import 'package:stream_pay/resources/value_manager.dart';
 
 class BackGround extends StatelessWidget {
   final Widget child;
+  final bool shouldClip;
 
-  const BackGround({required this.child, Key? key}) : super(key: key);
+  const BackGround({
+    required this.child,
+    this.shouldClip = false,
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -25,6 +28,8 @@ class BackGround extends StatelessWidget {
           begin: Alignment.centerRight,
           end: Alignment.bottomLeft,
         ),
+        borderRadius:
+            shouldClip ? BorderRadiusDirectional.circular(AppSize.s16) : null,
       ),
       child: Padding(
         padding: const EdgeInsets.all(AppSize.s26),

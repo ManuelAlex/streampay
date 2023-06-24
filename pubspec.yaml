@@ -66,6 +66,10 @@ flutter:
     - assets/images/onboarding2.jpg
     - assets/images/onboarding3.jpg
     - assets/vectors/Vector@2x.png
+    - assets/vectors/metamask.png
+    - assets/vectors/math_wallet.png
+    - assets/vectors/trust_wallet.png
+    - assets/vectors/wallet_connect.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

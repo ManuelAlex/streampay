@@ -16,7 +16,7 @@ class RegisterStateNotifer extends StateNotifier<AuthState> {
     );
   }
 
-  void setConnetWalletBorder() {
+  void setConnetWallet() {
     state.isPressedConnetWallet = !state.isPressedConnetWallet;
     state = AuthState(
       flipPassIcon: state.flipPassIcon,

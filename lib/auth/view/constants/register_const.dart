@@ -18,4 +18,8 @@ class RegisterConst {
 
   static const String connetWithWallet = "Connet With Wallet";
   static const String signUp = "Sign Up";
+  static const String metaMask = 'Metamask';
+  static const String trustWallet = 'TrustWallet';
+  static const String walletConnect = 'WalletConnect';
+  static const String mathWallet = 'MathWallet';
 }
