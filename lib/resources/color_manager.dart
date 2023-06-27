@@ -13,4 +13,8 @@ class ColorManager {
   static Color blueButton = "#5050FF".stringToColor();
   static Color redPink = "#FE53BB".stringToColor();
   static Color borderColor = "#D1D1FF24".stringToColor();
+  static Color backGroundPink = const Color(0xFFFE53BB);
+  static Color backGroundPurple1 = const Color(0x7F54549C);
+  static Color backGroundPurple2 = const Color(0xFF454578);
+  static Color backGroundAsh = const Color(0xB2FAFAFF);
 }

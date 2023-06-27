@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:stream_pay/auth/controller/providers/is_empty_textfield_provider.dart';
 import 'package:stream_pay/auth/controller/providers/register_state_provider.dart';
 import 'package:stream_pay/auth/view/constants/register_const.dart';
 import 'package:stream_pay/componets/text_widget.dart';
@@ -7,11 +7,12 @@ import 'package:stream_pay/resources/color_manager.dart';
 import 'package:stream_pay/resources/value_manager.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class CustomTextFeild extends HookWidget {
+class CustomTextFeild extends HookConsumerWidget {
   final String text;
   final String hintText;
   final TextEditingController textEditingController;
   final TextInputType textInputType;
+  final int index;
 
   const CustomTextFeild({
     Key? key,
@@ -19,13 +20,13 @@ class CustomTextFeild extends HookWidget {
     required this.hintText,
     required this.textEditingController,
     required this.textInputType,
+    required this.index,
   }) : super(key: key);
 
   @override
-  Widget build(
-    BuildContext context,
-  ) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final textController = textEditingController;
+    final isEmptyTextField = ref.watch(isTextFieldEmptyProvider);
     return Padding(
       padding: const EdgeInsets.only(top: AppSize.s20, right: AppSize.s20),
       child: SizedBox(
@@ -47,6 +48,17 @@ class CustomTextFeild extends HookWidget {
                 borderRadius: BorderRadius.circular(AppSize.s10),
               ),
               child: TextField(
+                onChanged: (value) {
+                  ref
+                      .read(registerStateProvider.notifier)
+                      .isEmptyTextField(textController, index);
+                },
+                // focusNode: FocusNode()
+                //   ..addListener(() {
+                //     ref
+                //         .read(registerStateProvider.notifier)
+                //         .isEmptyTextField(textController, index);
+                //   }),
                 style: Theme.of(context)
                     .textTheme
                     .bodySmall!
@@ -61,7 +73,11 @@ class CustomTextFeild extends HookWidget {
                       .textTheme
                       .bodyMedium!
                       .copyWith(fontSize: AppSize.s14),
-                  border: InputBorder.none,
+                  enabledBorder: isEmptyTextField[index]
+                      ? InputBorder.none
+                      : OutlineInputBorder(
+                          borderSide: BorderSide(color: ColorManager.primary2),
+                        ),
                   focusedBorder: OutlineInputBorder(
                     borderSide: BorderSide(color: ColorManager.primary2),
                   ),
@@ -85,11 +101,9 @@ class CustomPasswordTextFeild extends HookConsumerWidget {
   }) : super(key: key);
 
   @override
-  Widget build(
-    BuildContext context,
-    WidgetRef ref,
-  ) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final textController = textEditingController;
+    final isEmptyTextField = ref.watch(isTextFieldEmptyProvider);
     return Padding(
       padding: const EdgeInsets.only(top: AppSize.s20, right: AppSize.s20),
       child: SizedBox(
@@ -111,45 +125,57 @@ class CustomPasswordTextFeild extends HookConsumerWidget {
                 borderRadius: BorderRadius.circular(AppSize.s10),
               ),
               child: TextField(
-                  style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                      color: ColorManager.white, fontSize: AppSize.s14),
-                  controller: textController,
-                  autocorrect: false,
-                  decoration: InputDecoration(
-                    contentPadding: const EdgeInsets.only(
-                      left: AppPadding.p16,
-                      top: AppPadding.p12,
-                      right: AppSize.s12,
-                    ),
-                    hintText: RegisterConst.enterPassword,
-                    suffixIcon: Padding(
-                      padding: const EdgeInsets.only(right: AppSize.s12),
-                      child: IconButton(
-                        onPressed: () {
-                          ref.read(registerStateProvider.notifier).seeIcon();
-                        },
-                        icon: ref.watch(registerStateProvider).flipPassIcon
-                            ? Icon(
-                                Icons.visibility,
-                                color: ColorManager.white.withOpacity(0.7),
-                              )
-                            : Icon(
-                                Icons.visibility_off,
-                                color: ColorManager.white.withOpacity(0.7),
-                              ),
-                      ),
-                    ),
-                    hintStyle: Theme.of(context)
-                        .textTheme
-                        .bodyMedium!
-                        .copyWith(fontSize: AppSize.s14),
-                    border: InputBorder.none,
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: ColorManager.primary2),
+                onChanged: (value) {
+                  ref
+                      .read(registerStateProvider.notifier)
+                      .isEmptyTextField(textController, 3);
+                },
+                style: Theme.of(context)
+                    .textTheme
+                    .bodySmall!
+                    .copyWith(color: ColorManager.white, fontSize: AppSize.s14),
+                controller: textController,
+                autocorrect: false,
+                decoration: InputDecoration(
+                  contentPadding: const EdgeInsets.only(
+                    left: AppPadding.p16,
+                    top: AppPadding.p12,
+                    right: AppSize.s12,
+                  ),
+                  hintText: RegisterConst.enterPassword,
+                  suffixIcon: Padding(
+                    padding: const EdgeInsets.only(right: AppSize.s12),
+                    child: IconButton(
+                      onPressed: () {
+                        ref.read(registerStateProvider.notifier).seeIcon();
+                      },
+                      icon: ref.watch(registerStateProvider).flipPassIcon
+                          ? Icon(
+                              Icons.visibility,
+                              color: ColorManager.white.withOpacity(0.7),
+                            )
+                          : Icon(
+                              Icons.visibility_off,
+                              color: ColorManager.white.withOpacity(0.7),
+                            ),
                     ),
                   ),
-                  keyboardType: TextInputType.visiblePassword,
-                  obscureText: !ref.watch(registerStateProvider).flipPassIcon),
+                  hintStyle: Theme.of(context)
+                      .textTheme
+                      .bodyMedium!
+                      .copyWith(fontSize: AppSize.s14),
+                  enabledBorder: isEmptyTextField[3]
+                      ? InputBorder.none
+                      : OutlineInputBorder(
+                          borderSide: BorderSide(color: ColorManager.primary2),
+                        ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: ColorManager.primary2),
+                  ),
+                ),
+                keyboardType: TextInputType.visiblePassword,
+                obscureText: !ref.watch(registerStateProvider).flipPassIcon,
+              ),
             ),
           ],
         ),

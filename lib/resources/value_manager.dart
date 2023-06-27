@@ -52,6 +52,9 @@ class AppSize {
   static const double s80 = 80.0;
   static const double s100 = 100.0;
   static const double s120 = 120.0;
+  static const double s_90 = -90.0;
+  static const double s622 = 662;
+  static const double s239 = 239;
 }
 
 @immutable
